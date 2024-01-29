@@ -7,7 +7,7 @@
 
 #It will be ran by github when push the code
 
-name: Terraform Deployment
+name: Terraform Init
 
 on:
  push:
@@ -16,7 +16,7 @@ on:
 
 # declare the running agents
 jobs:
- terraform:
+ terraform-ci:
    runs-on: ubuntu-latest
 
 #git clone
