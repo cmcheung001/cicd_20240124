@@ -23,6 +23,7 @@ on:
     options:
     ##these options here can be used to load different blocks of yaml for different steps
     - dev
+    - uat
     - staging
     - prod
         
@@ -54,5 +55,16 @@ jobs:
      run: terraform init
 
 #terraform plan
-   - name: Terraform Apply
-     run: terraform apply --auto-approve
+#   - name: Terraform Apply
+#     run: terraform apply --auto-approve
+
+   - name: Terraform workspace new environment and select
+     run: |
+       terraform workspace select ${{ github.event.inputs.environment }} || terraform workspace new ${{ github.event.inputs.environment }}
+       terraform workspace list
+
+   - name: Terraform plan
+     run: terraform plan -var-file=${{ github.event.inputs.environment }}.tfvars
+
+   - name: Terraform apply
+     run: terraform apply -var-file=${{ github.event.inputs.environment }}.tfvars -auto-approve
