@@ -3,3 +3,4 @@ variable res_name {
   default = "jeremy"
 }
 
+variable myenv {}

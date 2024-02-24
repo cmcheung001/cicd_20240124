@@ -8,7 +8,7 @@
 
 resource "aws_sns_topic" "user_updates2" {
   provider = aws
-  name = "${var.myenv}-jeremy-updates-topic"
+  name = "jeremy-${var.myenv}-updates-topic"
   #name = "jeremy001-updates-topic"
 }
 
